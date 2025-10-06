@@ -106,8 +106,6 @@ The app should now be available at http://127.0.0.1:8000
 
 ## Notes on Implementation
 
-Routing: Laravel routes with Inertia.js provide a seamless SPA experience.
-
 Authentication: Leveraged default Laravel authentication.
 
 Notes CRUD: Implemented using Inertia forms and Laravel controllers.
