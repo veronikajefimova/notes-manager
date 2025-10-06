@@ -43,7 +43,6 @@ Then open a terminal inside this folder.
 
 ```bash
 git clone https://github.com/veronikajefimova/notes-manager.git
-cd <project-directory>
 ```
 
 ### 4. Install backend dependencies
