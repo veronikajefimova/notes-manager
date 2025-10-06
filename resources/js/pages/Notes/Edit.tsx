@@ -55,7 +55,7 @@ export default function Edit({ note } : Props) {
                         </Alert>
                     )}
                     <div className='mt-4'>
-                        <Button className='cursor-pointer' type="submit">Update Note</Button>
+                        <Button disabled={processing} className='cursor-pointer' type="submit">Update Note</Button>
                     </div>
                 </form>
             </div>

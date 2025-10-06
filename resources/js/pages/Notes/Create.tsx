@@ -52,7 +52,7 @@ export default function Index() {
                         </Alert>
                     )}
                     <div className='mt-4'>
-                        <Button className='cursor-pointer' type="submit">Create Note</Button>
+                        <Button disabled={processing} className='cursor-pointer' type="submit">Create Note</Button>
                     </div>
                 </form>
             </div>
