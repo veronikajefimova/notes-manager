@@ -31,4 +31,11 @@ class NoteController extends Controller
 
         return redirect()->route('notes.index')->with('message', 'Note created successfully.');
     }
+
+    public function destroy(Note $note)
+    {
+        $note->delete();
+
+        return redirect()->route('notes.index')->with('message', 'Note deleted successfully.');
+    }
 }
