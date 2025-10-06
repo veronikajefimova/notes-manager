@@ -21,6 +21,7 @@ import {
   DialogTitle,
   DialogDescription,
   DialogFooter,
+  DialogClose,
 } from "@/components/ui/dialog";
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -108,7 +109,11 @@ export default function Index() {
                                         >
                                             Yes, delete
                                         </Button>
-                                        <Button className='cursor-pointer' variant="ghost">Cancel</Button>
+                                        <DialogClose>
+                                            <Button className='cursor-pointer' variant="ghost">
+                                                Cancel
+                                            </Button>
+                                        </DialogClose>
                                         </DialogFooter>
                                     </DialogContent>
                                     </Dialog>
