@@ -106,30 +106,30 @@ The app should now be available at http://127.0.0.1:8000
 
 ## Notes on Implementation
 
-Authentication: Leveraged default Laravel authentication.
+- Authentication: Leveraged default Laravel authentication.
 
-Notes CRUD: Implemented using Inertia forms and Laravel controllers.
+- Notes CRUD: Implemented using Inertia forms and Laravel controllers.
 
-Dialog: Custom delete confirmation implemented using shadcn/ui Dialog component.
+- Dialog: Custom delete confirmation implemented using shadcn/ui Dialog component.
 
-UI: Cards layout for notes using flexbox for multiple notes in a row.
+- UI: Cards layout for notes using flexbox for multiple notes in a row.
 
 ### Assumptions:
 
-Only authenticated users can manage notes.
+- Only authenticated users can manage notes.
 
-Notes have title, description, created_at, and updated_at.
+- Notes have title, description, created_at, and updated_at.
 
-Default Laravel authentication.
+- Default Laravel authentication.
 
 ## Future Improvements
 
-Add pagination for notes.
+- Add pagination for notes.
 
-Add unit and integration tests for backend and frontend.
+- Add unit and integration tests for backend and frontend.
 
-Implement full two-factor authentication flow.
+- Implement full two-factor authentication flow.
 
-Add search and filter functionality for notes.
+- Add search and filter functionality for notes.
 
-Containerize the application with Docker for easier deployment.
+- Containerize the application with Docker for easier deployment.
