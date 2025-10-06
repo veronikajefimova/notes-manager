@@ -56,7 +56,7 @@ export default function Index() {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Notes" />
             <div className='m-4'>
-                <Link href="/notes/create"><Button>Create Note</Button></Link>
+                <Link href="/notes/create"><Button className='cursor-pointer'>Create Note</Button></Link>
             </div>
             <div className='m-4'>
                 <div>
@@ -116,12 +116,12 @@ export default function Index() {
                                 </CardHeader>
 
                                 <CardContent>
-                                <a
-                                    href="#"
+                                <Link
+                                    href={`/notes/${note.id}/edit`}
                                     className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
                                 >
                                     Edit
-                                </a>
+                                </Link>
                                 </CardContent>
                             </Card>
                         ))}
