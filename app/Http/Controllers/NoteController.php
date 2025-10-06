@@ -11,7 +11,8 @@ class NoteController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Notes/Index');
+        $notes = Note::all();
+        return Inertia::render('Notes/Index', compact('notes'));
     }
 
     public function create()
