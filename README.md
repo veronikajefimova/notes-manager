@@ -135,8 +135,6 @@ php artisan test
 
 - Add pagination for notes.
 
-- Add unit and integration tests for backend and frontend.
-
 - Implement full two-factor authentication flow.
 
 - Add search and filter functionality for notes.
