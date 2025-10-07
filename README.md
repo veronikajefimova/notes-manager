@@ -125,7 +125,7 @@ The app should now be available at http://127.0.0.1:8000
 
 ### Testing
 
-This project uses PestPHP for backend tests.
+This project uses Pest for backend tests.
 
 ```bash
 php artisan test
