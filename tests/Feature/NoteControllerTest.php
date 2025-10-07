@@ -1,88 +1,76 @@
 <?php
 
-namespace Tests\Feature;
-
 use App\Models\User;
 use App\Models\Note;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 
-class NoteControllerTest extends TestCase
-{
-    use RefreshDatabase; // очищает базу перед каждым тестом
+uses(RefreshDatabase::class);
 
-    public function test_notes_page_loads_for_authenticated_user()
-    {
-        // Создаём тестового пользователя
-        $user = User::factory()->create();
+// Test: notes page loads for authenticated user
+test('notes page loads for authenticated user', function () {
+    $user = User::factory()->create();
 
-        // Авторизуем пользователя
-        $response = $this->actingAs($user)->get('/notes');
+    $this->actingAs($user)
+         ->get('/notes')
+         ->assertStatus(200);
+});
 
-        // Проверяем, что страница открывается
-        $response->assertStatus(200);
-    }
+// Test: user can create a note
+test('user can create a note', function () {
+    $user = User::factory()->create();
 
-    public function test_user_can_create_a_note()
-    {
-        $user = User::factory()->create();
+    $noteData = [
+        'title' => 'My Test Note',
+        'description' => 'This is a test note.',
+    ];
 
-        $noteData = [
-            'title' => 'My Test Note',
-            'description' => 'This is a test note.',
-        ];
+    $this->actingAs($user)
+         ->post('/notes', $noteData)
+         ->assertStatus(302);
 
-        $response = $this->actingAs($user)->post('/notes', $noteData);
+    $this->assertDatabaseHas('notes', $noteData);
+});
 
-        // Проверяем, что редирект сработал
-        $response->assertStatus(302);
+// Test: user can see created note
+test('user can see created note', function () {
+    $user = User::factory()->create();
+    $note = Note::factory()->create();
 
-        // Проверяем, что заметка есть в базе
-        $this->assertDatabaseHas('notes', [
-            'title' => 'My Test Note',
-            'description' => 'This is a test note.',
-        ]);
-    }
+    $this->actingAs($user)
+         ->get('/notes')
+         ->assertSee($note->title);
+});
 
-    public function test_user_can_see_created_note()
-    {
-        $user = User::factory()->create();
-        $note = Note::factory()->create(); // без user_id
+// Test: user can update a note
+test('user can update a note', function () {
+    $user = User::factory()->create();
+    $note = Note::factory()->create([
+        'title' => 'Old Title',
+        'description' => 'Old description',
+    ]);
 
-        $response = $this->actingAs($user)->get('/notes');
+    $updatedData = [
+        'title' => 'Updated Title',
+        'description' => 'Updated description',
+    ];
 
-        $response->assertSee($note->title);
-    }
+    $this->actingAs($user)
+         ->put("/notes/{$note->id}", $updatedData)
+         ->assertStatus(302);
 
-    public function test_user_can_update_a_note()
-    {
-        $user = User::factory()->create();
-        $note = Note::factory()->create([
-            'title' => 'Old Title',
-            'description' => 'Old description',
-        ]);
+    $this->assertDatabaseHas('notes', $updatedData);
+});
 
-        $updatedData = [
-            'title' => 'Updated Title',
-            'description' => 'Updated description',
-        ];
+// Test: user can delete a note
+test('user can delete a note', function () {
+    $user = User::factory()->create();
+    $note = Note::factory()->create(); 
 
-        $response = $this->actingAs($user)->put("/notes/{$note->id}", $updatedData);
-        $response->assertStatus(302);
+    $this->actingAs($user)
+         ->delete("/notes/{$note->id}")
+         ->assertStatus(302);
 
-        $this->assertDatabaseHas('notes', $updatedData);
-    }
-
-    public function test_user_can_delete_a_note()
-    {
-        $user = User::factory()->create();
-        $note = Note::factory()->create();
-
-        $response = $this->actingAs($user)->delete("/notes/{$note->id}");
-        $response->assertStatus(302);
-
-        $this->assertDatabaseMissing('notes', [
-            'id' => $note->id,
-        ]);
-    }
-}
+    $this->assertDatabaseMissing('notes', [
+        'id' => $note->id,
+    ]);
+});
