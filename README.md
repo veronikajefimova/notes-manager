@@ -35,7 +35,7 @@ Make sure Apache and MySQL are running in the XAMPP Control Panel.
 
 Place project inside the htdocs folder:
 
-C:\xampp\htdocs\notes-manager
+C:\xampp\htdocs
 
 
 Then open a terminal inside this folder.
