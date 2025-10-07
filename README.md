@@ -20,6 +20,7 @@ A simple web application to manage notes, built with Laravel (backend) and React
 - **Backend:** Laravel
 - **Frontend:** React, TypeScript, Inertia.js, shadcn/ui
 - **Database:** MySQL (via XAMPP)
+- **Testing:** Pest
 
 ---
 
@@ -121,6 +122,14 @@ The app should now be available at http://127.0.0.1:8000
 - Notes have title, description, created_at, and updated_at.
 
 - Default Laravel authentication.
+
+### Testing
+
+This project uses PestPHP for backend tests.
+
+```bash
+php artisan test
+```
 
 ## Future Improvements
 
